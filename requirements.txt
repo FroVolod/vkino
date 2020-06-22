@@ -1,0 +1,4 @@
+awesome-slugify==1.6.5
+Django==3.0.7
+django-adminlte3==0.1.6
+Pillow==7.1.2
