@@ -18,7 +18,7 @@ class ChangeName(object):
         filename = '{}.{}'.format(uuid.uuid4().hex, ext)
         return os.path.join(self.path + str(instance.film.id), filename)
 
-image_file_name = ChangeName('media/images/')
+image_file_name = ChangeName('media/pictures/')
 
 
 
@@ -72,7 +72,7 @@ class Cinematographer(models.Model):
 
     name = models.CharField('Имя', max_length=100)
     description = models.TextField('Описание', blank=True)
-    image = models.ImageField('Фото', upload_to='media/cinematographer/', blank=True)
+    image = models.ImageField('Фото', upload_to='cinematographer/', blank=True)
 
     def __str__(self):
         return self.name
@@ -164,7 +164,7 @@ class Film(models.Model):
         )
     poster = models.ImageField(
         'Афиша',
-        upload_to='media/films/',
+        upload_to='posters/',
         blank=True
     )
     flag_poster = models.BooleanField(
@@ -211,7 +211,7 @@ class FilmPicture(models.Model):
         )
     
     def __str__(self):
-        return self.name
+        return self.image_title
 
     class Meta:
         verbose_name = 'Кадр из фильма'
