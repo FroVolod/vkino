@@ -7,6 +7,10 @@ from django.utils.deconstruct import deconstructible
 
 from slugify import slugify_ru
 
+from smartfields import fields
+from smartfields.dependencies import FileDependency
+from smartfields.processors import ImageProcessor
+
 
 @deconstructible
 class ChangeName(object):
@@ -18,7 +22,7 @@ class ChangeName(object):
         filename = '{}.{}'.format(uuid.uuid4().hex, ext)
         return os.path.join(self.path + str(instance.film.id), filename)
 
-image_file_name = ChangeName('media/pictures/')
+image_file_name = ChangeName('pictures/')
 
 
 
@@ -72,7 +76,7 @@ class Cinematographer(models.Model):
 
     name = models.CharField('Имя', max_length=100)
     description = models.TextField('Описание', blank=True)
-    image = models.ImageField('Фото', upload_to='cinematographer/', blank=True)
+    image = fields.ImageField('Фото', upload_to='cinematographer/', blank=True)
 
     def __str__(self):
         return self.name
@@ -162,11 +166,11 @@ class Film(models.Model):
         editable=True,
         blank=True
         )
-    poster = models.ImageField(
+    poster = fields.ImageField(
         'Афиша',
         upload_to='posters/',
-        blank=True
-    )
+        blank=True,
+        )
     flag_poster = models.BooleanField(
         'Показывать в афише',
         default=False,
@@ -195,14 +199,13 @@ class FilmPicture(models.Model):
         Film,
         verbose_name='Фильм',
         on_delete=models.CASCADE)
-    image = models.ImageField(
+    image = fields.ImageField(
         'Изображение',
         upload_to=image_file_name
         )
     image_title = models.CharField(
         'Название изображения',
         max_length=100,
-        blank=True
         )
     alt = models.CharField(
         'Alt',
