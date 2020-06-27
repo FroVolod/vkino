@@ -4,6 +4,7 @@ from datetime import date
 
 from django.db import models
 from django.utils.deconstruct import deconstructible
+from django.urls import reverse
 
 from slugify import slugify_ru
 
@@ -180,6 +181,10 @@ class Film(models.Model):
         'Сюжет',
         blank=True
         )
+    trailer_url = models.TextField(
+        'URL Видео',
+        blank=True
+        )
 
     def __str__(self):
         return self.title
@@ -188,6 +193,9 @@ class Film(models.Model):
         if not self.slug:
             self.slug = slugify_ru(self.title, to_lower=True, max_length=100)
         super(Film, self).save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return reverse('film_details', kwargs={'slug': self.slug})
     
     class Meta:
         verbose_name = 'Фильм'

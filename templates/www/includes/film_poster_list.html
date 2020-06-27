@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    {% for film in film_poster_list%}
+    <div class="col-md-3">
+      <div class="card" style="width: 18rem;">
+        <a href="{{ film.get_absolute_url }}">
+        {% if film.poster %}
+          <img src="{{ film.poster.url }}" class="card-img-top" alt="{{ film.title }}">
+        {% else %}
+          <img src="" class="card-img-top" alt="{{ film.title }}">
+        {% endif %}
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{ film.title }}</h5>
+          <a href="#" class="btn btn-primary">Купить билет</a>
+        </div>
+      </div>
+    </div>    
+  {% endfor %}
+  </div>
+</div>
