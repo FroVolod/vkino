@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'smartfields',
 
     'www',
-    'cms',
+    # 'cms',
 ]
 
 MIDDLEWARE = [
