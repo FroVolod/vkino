@@ -142,6 +142,12 @@ class Film(models.Model):
         related_name='film_operator',
         blank=True
         )
+    composers = models.ManyToManyField(
+        Cinematographer,
+        verbose_name='Композиторы',
+        related_name='film_composer',
+        blank=True
+        )
     genres = models.ManyToManyField(
         Genre,
         verbose_name='Жанры',
