@@ -10,51 +10,79 @@
 ></iframe>
 </div>
 
-<div class="container">
+<div class="container" style="margin: 30px;">
   <div class="row" style="padding: 20px;">
-    <div class="col-md-3">
+    <div class="col-md-4" style="margin-right: 20px;">
       <img src="{{ object.poster.url }}" class="card-img-top" alt="qwe">
     </div>
-    <div class="col" style="text-align:center">
-      <h2>{{ object }}</h2>
-      <a href="#" class="btn btn-primary">Купить билет</a>
-      <p>{{ object.description }}</p>
+    <div class="col" style="text-align:center; padding: 20px; margin-left: 20px; margin-right: 20px;">
+      <a href="" class="btn btn-success">Купить билет</a>
+      <h2 style="margin: 30px;">{{ object }}</h2>
+      <p style="text-align: justify; margin-top: 50px;">{{ object.description }}</p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-3">
+  <div class="row" style="padding: 20px;">
+    <div class="col-md-4" style="padding-right: 20px; margin-right: 20px;">
       <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Имя</th>
-            <th scope="col">Фамилия</th>
-            <th scope="col">Username</th>
-          </tr>
-        </thead>
         <tbody>
           <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">Год</th>
+            <td>{{ object.date.year }}</td>
           </tr>
           <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
+            <th scope="row">Страна</th>
+            <td>{{ object.country }}</td>
+          </tr>
+          {% for composer in object.composers.all %}
+          <tr>
+            <th scope="row">Композитор</th>
+            <td>{{ composer }}</td>
+          </tr>
+          {% endfor %}
+          {% for produser in object.producers.all %}
+          <tr>
+            <th scope="row">Продюсер</th>
+            <td>{{ produser }}</td>
+          </tr>
+          {% endfor %}
+          {% for director in object.directors.all %}
+          <tr>
+            <th scope="row">Режиссер</th>            
+            <td>{{ director }}</td>
+          </tr>
+          {% endfor %}
+          {% for operator in object.operators.all %}
+          <tr>
+            <th scope="row">Оператор</th>
+            <td>{{ operator }}</td>
+          </tr>
+          {% endfor %}
+          {% for screenwriter in object.screenwriters.all %}
+          <tr>
+            <th scope="row">Сценарист</th>
+            <td>{{ screenwriter }}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <th scope="row">Жанр</th>
+            <td>{{ object.genre }}</td>
           </tr>
           <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
+            <th scope="row">Бюджет</th>
+            <td>{{ object.budget }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Возраст</th>
+            <td>{{ object.age }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Время</th>
+            <td>{{ object.time }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col" style="margin: 30px; ">
+    <div class="col" style="margin-left: 30px; ">
       <h3>Кадры из фильма</h3>
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
