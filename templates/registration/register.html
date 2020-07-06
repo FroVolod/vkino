@@ -1,0 +1,56 @@
+{% extends "adminlte/login.html" %}
+
+{% block body %}
+<div class="register-box" >
+  <div class="login-logo bg-dark">
+      <a href="/"><img src="https://vkino.ua/images/logo.png" alt="Вкино"></a>
+  </div>
+
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Регистрация нового пользователя</p>
+      <form action="" method="post">
+        {% csrf_token %}
+        {% if not form.is_valid %}
+          <p class="login-box-msg" style="color: red;">{{ form.errors }}</p>
+        {% endif %}
+        <div class="input-group mb-3">
+          <input name="username" class="form-control" placeholder="Имя пользователя">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password1" class="form-control" placeholder="Пароль">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password2" class="form-control" placeholder="Подтверждение пароля">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-5">
+            <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+{% endblock %}
+

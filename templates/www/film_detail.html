@@ -1,6 +1,7 @@
 {% extends 'www/base.html' %}
 
 {% block content %}
+{% if object.trailer_url %}
 <div class="embed-responsive embed-responsive-16by9">
 <iframe 
   class="embed-responsive-item"
@@ -9,6 +10,7 @@
   allowfullscreen
 ></iframe>
 </div>
+{% endif %}
 
 <div class="container" style="margin: 30px;">
   <div class="row" style="padding: 20px;">

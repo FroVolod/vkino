@@ -17,13 +17,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LogoutView
+
+from www.views import (
+    MyRegisterFormView, MyLoginFormView
+)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', MyLoginFormView.as_view(),
+        name='login'),
+    path('logout/', LogoutView.as_view(),
+        name='logout'),
+    path('register/', MyRegisterFormView.as_view(),
+        name="register"),
+    path('cms/', include('cms.urls')),
     path('', include('www.urls')),
-    # path('cms/', include('moder_cms.urls'))
 ]
 
-if settings.DEBUG:
-    urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,8 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import login
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormView
 
 from datetime import date
 
@@ -50,3 +53,27 @@ class FilmDetailView(DetailView):
         context['image_list'] = film.filmpicture_set.all()
         context['image_last'] = film.filmpicture_set.all().last().image.url
         return context
+
+
+class MyRegisterFormView(FormView):
+    form_class = UserCreationForm
+    success_url = "/login/"
+    template_name = "registration/register.html"
+
+    def form_valid(self, form):
+        form.save()
+        return super(MyRegisterFormView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return super(MyRegisterFormView, self).form_invalid(form)
+
+
+class MyLoginFormView(FormView):
+    form_class = AuthenticationForm
+    success_url = "/"
+    template_name = "registration/login.html"
+
+    def form_valid(self, form):
+        self.user = form.get_user()
+        login(self.request, self.user)
+        return super(MyLoginFormView, self).form_valid(form)
