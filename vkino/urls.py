@@ -32,7 +32,7 @@ urlpatterns = [
         name='logout'),
     path('register/', MyRegisterFormView.as_view(),
         name="register"),
-    path('cms/', include('cms.urls')),
+    # path('cms/', include('cms.urls')),
     path('', include('www.urls')),
 ]
 
