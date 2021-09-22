@@ -1,4 +1,4 @@
-Django==3.0.7
+Django==3.1.13
 awesome-slugify==1.6.5
 django-adminlte3==0.1.6
 Pillow==7.1.2
