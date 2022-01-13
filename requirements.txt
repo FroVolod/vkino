@@ -1,7 +1,7 @@
 Django==3.0.7
 awesome-slugify==1.6.5
 django-adminlte3==0.1.6
-Pillow==7.1.2
+Pillow==9.0.0
 django-smartfields==1.1.1
 dj-database-url==0.5.0
 gunicorn==20.0.4
